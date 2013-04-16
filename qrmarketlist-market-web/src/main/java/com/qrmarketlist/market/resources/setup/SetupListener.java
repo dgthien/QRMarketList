@@ -21,7 +21,6 @@ import com.qrmarketlist.market.framework.SpringUtils;
  * o usuário ter finalizado o processo de Setup.
  * </p>
  * 
- * @author rafael.m
  */
 public class SetupListener implements PhaseListener {
 
