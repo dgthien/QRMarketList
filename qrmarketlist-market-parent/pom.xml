@@ -1,0 +1,60 @@
+<project>
+	<modelVersion>4.0.0</modelVersion>
+
+	<groupId>com.qrmarketlist.market</groupId>
+	<artifactId>qrmarketlist-market-parent</artifactId>
+	<version>1.0-SNAPSHOT</version>
+
+	<name>${product.name}</name>
+	<packaging>pom</packaging>
+
+	<modules>
+		<module>../qrmarketlist-market-core</module>
+		<module>../qrmarketlist-market-web</module>
+	</modules>
+
+	<repositories>
+		<repository>
+			<id>prime-repo</id>
+			<name>PrimeFaces Maven Repository</name>
+			<url>http://repository.primefaces.org</url>
+			<layout>default</layout>
+		</repository>
+	</repositories>
+
+	<properties>
+		<product.name>qrmarketlist-market</product.name>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+		<hibernate.version>4.1.1.Final</hibernate.version>
+		<hibernate.validator.version>4.2.0.Final</hibernate.validator.version>
+		<javaee.version>6.0</javaee.version>
+		<jboss.javaeeapi.version>3.0.0.Final</jboss.javaeeapi.version>
+		<spring.framework.version>3.1.1.RELEASE</spring.framework.version>
+		<spring.framework.security.version>3.1.0.RELEASE
+		</spring.framework.security.version>
+		<spring.framework.ws.version>2.1.0.RELEASE
+		</spring.framework.ws.version>
+		<primefaces.version>3.3</primefaces.version>
+		<maven-compiler-plugin.version>2.3.2</maven-compiler-plugin.version>
+		<maven-eclipse-plugin.version>2.8</maven-eclipse-plugin.version>
+		<slf4j-api.version>1.6.4</slf4j-api.version>
+		<slf4j-simple.version>1.6.6</slf4j-simple.version>
+		<cglib.version>2.2.2</cglib.version>
+	</properties>
+
+	<build>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-eclipse-plugin</artifactId>
+				<version>${maven-eclipse-plugin.version}</version>
+				<configuration>
+					<projectNameTemplate>[artifactId]</projectNameTemplate>
+					<encoding>${project.build.sourceEncoding}</encoding>
+				</configuration>
+			</plugin>
+		</plugins>
+	</build>
+
+</project>

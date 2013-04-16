@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:p="http://primefaces.org/ui">
+
+<head>
+<title>QRMarketList Login</title>
+<link rel="stylesheet" href="resources/css/style.css"/>
+</head>
+
+<body>
+	<center>
+		<form action="j_spring_security_check" method="post" class="login">
+			<p>
+				<label for="j_username">Usuário:</label> 
+				<input type="text" name="j_username" id="j_username" />
+				<script>document.getElementById("j_username").focus();</script>
+			</p>
+	
+			<p>
+			    <label for="password">Senha:</label>
+			    <input type="password" name="j_password" id="j_password"/>
+	    	</p>
+			
+			<p class="login-submit">
+	      		<button type="submit" class="login-button">Logar</button>
+	    	</p>
+	    	
+	    	<p class="forgot-password"><a href="index.xhtml">Esqueceu sua senha?</a></p>
+		</form>
+	</center>
+</body>
+</html>

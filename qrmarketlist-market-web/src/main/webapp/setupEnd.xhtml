@@ -1,0 +1,25 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+	
+<h:head>
+	<title>SetupEnd</title>
+</h:head>
+
+<body>
+	<h:form id="setupEndForm" >
+		<p:panel header="Finalização">
+				<br/><h2>Parabéns</h2>
+				<h3>Você finalizou com êxito o processo de inicialização </h3>
+				<h3>Clique no botão Finalizar para ser direcionado para a página de Login do QRMarket-Market.</h3>								
+				<br/>
+		</p:panel>
+		<p:commandButton value="Finalizar" action="#{setupBean.finish}"/>
+	</h:form>
+</body>
+
+</html>

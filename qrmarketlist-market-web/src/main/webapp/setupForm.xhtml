@@ -1,0 +1,36 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+
+<h:head>
+	<title>SetupForm</title>
+</h:head>
+
+<body>
+	<h:form id="setupFormForm">
+	<t:saveState value="#{setupBean}"/>
+		<p:panel  header="Dados do Administrador">
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Nome: *" for="nome" />
+				<p:inputText id="nome" value="#{setupBean.user.name}" required="true" />
+				
+				<h:outputLabel value="Usuario: *" for="usuario" />
+				<p:inputText id="usuario" value="#{setupBean.user.username}" required="true" />
+				
+				<h:outputLabel value="Senha: *" for="senha" />
+				<p:password  id="senha" value="#{setupBean.user.password}" required="true" />
+				
+				<h:outputLabel value="Confirmação de Senha: *" for="passwordConfirmation" />
+				<p:password  id="passwordConfirmation" value="#{setupBean.user.passwordConfirmation}" required="true" />
+			</h:panelGrid>
+		</p:panel>
+		<p:commandButton value="Salvar" action="#{setupBean.save}" ajax="false"/>
+	</h:form>
+</body>
+
+</html>
