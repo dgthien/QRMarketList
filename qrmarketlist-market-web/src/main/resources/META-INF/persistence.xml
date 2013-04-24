@@ -10,6 +10,7 @@
 		<!-- 	CLASSES DE PERSISTENCIA  -->
 		<class>com.qrmarketlist.market.core.user.User</class>
 		<class>com.qrmarketlist.market.core.product.Product</class>
+		<class>com.qrmarketlist.market.core.tenant.Tenant</class>
 		
 		<properties>
 			<property name="hibernate.hbm2ddl.auto" value="update"/>
@@ -20,3 +21,4 @@
 	</persistence-unit>
 
 </persistence>
+

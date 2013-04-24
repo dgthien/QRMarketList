@@ -2,9 +2,11 @@ package com.qrmarketlist.market.core.user;
 
 import java.util.List;
 
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.qrmarketlist.market.core.AbstractPersistence;
+import com.qrmarketlist.market.core.tenant.Tenant;
 import com.qrmarketlist.market.framework.BusinessException;
 
 @Service
@@ -16,8 +18,8 @@ public class UserBusiness extends AbstractPersistence<User> {
 	 * @param password
 	 * @return {@link User}
 	 */
-	public User retrieveUserByNameAndPassword(String username, String password) {
-		List<User> user = retrieve(eq("username", username), eq("password", password));
+	public User retrieveUserByNameAndPasswordAndTenant(String username, String password, Tenant tenant) {
+		List<User> user = retrieve(eq("username", username), eq("password", password), eq("tenant", tenant));
 		if (user == null || user.size() == 0) {
 			return null;
 		}
@@ -63,29 +65,33 @@ public class UserBusiness extends AbstractPersistence<User> {
 	 * @param tenant
 	 * @throws BusinessException
 	 */
-	public void saveOrUpdate(User user)  {
-		
-		if (user.getId() != null) {
-			if (user.getPassword().equals("")) {
-				String oldPass = retrieveById(user.getId()).getPassword();
-				user.setPassword(oldPass);
+	public User saveOrUpdate(User user)  {
+		try {
+			if (user.getId() != null) {
+				if (user.getPassword().equals("")) {
+					String oldPass = retrieveById(user.getId()).getPassword();
+					user.setPassword(oldPass);
+				} else {
+					user.setPassword(user.getPassword());
+				}
+				if (user.getPasswordConfirmation() == null || user.getPasswordConfirmation().equals("")) {
+					String oldPass = retrieveById(user.getId()).getPassword();
+					user.setPasswordConfirmation(oldPass);
+				} else {
+					user.setPasswordConfirmation(user.getPasswordConfirmation());
+				}
+				user = createOrUpdate(user);
 			} else {
+				user.setStatus(UserEnum.ACTIVE);
+				user.setAdministrator(true);
 				user.setPassword(user.getPassword());
-			}
-			if (user.getPasswordConfirmation() == null || user.getPasswordConfirmation().equals("")) {
-				String oldPass = retrieveById(user.getId()).getPassword();
-				user.setPasswordConfirmation(oldPass);
-			} else {
 				user.setPasswordConfirmation(user.getPasswordConfirmation());
+				user = createOrUpdate(user);
 			}
-			createOrUpdate(user);
-		} else {
-			user.setStatus(UserEnum.ACTIVE);
-			user.setAdministrator(true);
-			user.setPassword(user.getPassword());
-			user.setPasswordConfirmation(user.getPasswordConfirmation());
-			createOrUpdate(user);
+		} catch (BusinessException e) {
+			LoggerFactory.getLogger(this.getClass()).error(e.getMessage());
 		}
+		return user;
 	}
 	
 	/**

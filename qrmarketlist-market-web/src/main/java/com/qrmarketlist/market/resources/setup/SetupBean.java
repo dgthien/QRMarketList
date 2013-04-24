@@ -6,9 +6,16 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
 
+import org.slf4j.LoggerFactory;
+
+import com.qrmarketlist.market.core.tenant.Tenant;
+import com.qrmarketlist.market.core.tenant.TenantBusiness;
+import com.qrmarketlist.market.core.tenant.TenantEnum;
 import com.qrmarketlist.market.core.user.User;
+import com.qrmarketlist.market.core.user.UserAdministratorBusiness;
 import com.qrmarketlist.market.core.user.UserBusiness;
 import com.qrmarketlist.market.core.user.UserEnum;
+import com.qrmarketlist.market.framework.BusinessException;
 
 @ManagedBean
 @RequestScoped
@@ -16,20 +23,37 @@ public class SetupBean implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private User user;
+	private Tenant tenant;
+	private String domain;
 
-	@ManagedProperty(value = "#{userBusiness}")
-	private transient UserBusiness userBusiness;
+	@ManagedProperty(value="#{tenantBusiness}")
+	private transient TenantBusiness tenantBusiness;
+	@ManagedProperty(value="#{userAdministratorBusiness}")
+	private transient UserAdministratorBusiness userAdministratorBusiness;
+	
+	public void setTenantBusiness(TenantBusiness tenantBusiness) {
+		this.tenantBusiness = tenantBusiness;
+	}
+	
+	public void setUserAdministratorBusiness(
+			UserAdministratorBusiness userAdministratorBusiness) {
+		this.userAdministratorBusiness = userAdministratorBusiness;
+	}
 
+	public Tenant getTenant() {
+		return tenant;
+	}
+	
+	public void setTenant(Tenant tenant) {
+		this.tenant = tenant;
+	}
+	
 	public User getUser() {
 		return user;
 	}
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public void setUserBusiness(UserBusiness userBusiness) {
-		this.userBusiness = userBusiness;
 	}
 
 	public String form() {
@@ -41,11 +65,29 @@ public class SetupBean implements Serializable {
 		formUser.setAdministrator(true);
 		formUser.setStatus(UserEnum.ACTIVE);
 		setUser(formUser);
+		Tenant formTenant = new Tenant();
+		formTenant.setDomain(getDomain());
+		formTenant.setName("TOTVS S/A");
+		setTenant(formTenant);
 		return "setupForm.xhtml";
 	}
 
+	public String getDomain() {
+		return domain;
+	}
+	
+	public void setDomain(String domain) {
+		this.domain = domain;
+	}
+	
 	public String save() {
-		this.userBusiness.saveOrUpdate(user);
+		try {
+			tenant.setStatus(TenantEnum.ACTIVE);
+			tenant = this.tenantBusiness.createOrUpdate(tenant);
+			this.userAdministratorBusiness.saveOrUpdate(user, tenant);
+		} catch (BusinessException e) {
+			LoggerFactory.getLogger(this.getClass()).error(e.getMessage());
+		}
 		return "setupEnd.xhtml";
 	}
 

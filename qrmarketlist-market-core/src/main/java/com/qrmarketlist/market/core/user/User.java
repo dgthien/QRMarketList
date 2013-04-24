@@ -8,7 +8,7 @@ import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
 
-import com.qrmarketlist.market.core.AbstractEntity;
+import com.qrmarketlist.market.core.AbstractTenantEntity;
 
 /**
  * Classe que representa a entidade {@link User}
@@ -16,7 +16,7 @@ import com.qrmarketlist.market.core.AbstractEntity;
 @Entity
 @Table(name = "QRMARKET_USER")
 @PrimaryKeyJoinColumn(name = "ID")
-public class User extends AbstractEntity {
+public class User extends AbstractTenantEntity {
 
 	private static final long serialVersionUID = 1L;
 	private String name;

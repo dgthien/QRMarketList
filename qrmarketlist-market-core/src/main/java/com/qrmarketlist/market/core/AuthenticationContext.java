@@ -8,6 +8,7 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Component;
 
+import com.qrmarketlist.market.core.tenant.Tenant;
 import com.qrmarketlist.market.core.user.User;
 
 /**
@@ -20,8 +21,16 @@ public class AuthenticationContext implements UserDetails {
 	private static final long serialVersionUID = 1L;
 	
 	private User user;
+	private Tenant tenant;
 	private transient Collection<? extends GrantedAuthority> authorities;
 	
+	public Tenant getTenant() {
+		return tenant;
+	}
+	
+	public void setTenant(Tenant tenant) {
+		this.tenant = tenant;
+	}
 	
 	/**
 	 * Retorna o usuário que esta acessando o sistema

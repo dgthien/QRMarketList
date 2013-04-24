@@ -20,6 +20,9 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
+import com.qrmarketlist.market.framework.BusinessException;
+
+
 /**
  * <p>Abstract class that implements all the persistence
  * operation for the product.</br>
@@ -52,8 +55,8 @@ public abstract class AbstractPersistence<E extends AbstractEntity> {
 	 * @return
 	 * @throws BusinessException
 	 */
-	protected void create(E entity) {
-		this.createOrUpdate(entity);
+	protected E create(E entity) throws BusinessException {
+		return createOrUpdate(entity);
 	}
 
 	/**
@@ -66,8 +69,8 @@ public abstract class AbstractPersistence<E extends AbstractEntity> {
 	 * @return
 	 * @throws BusinessException
 	 */
-	protected void update(E entity) {
-		this.createOrUpdate(entity);
+	protected E update(E entity) throws BusinessException {
+		return this.createOrUpdate(entity);
 	}
 	
 	/**
@@ -82,11 +85,12 @@ public abstract class AbstractPersistence<E extends AbstractEntity> {
 	 * @return
 	 * @throws BusinessException
 	 */
-	public void createOrUpdate(E entity) {
-		try{
-			entityManager.merge(entity);
+	public E createOrUpdate(E entity) throws BusinessException {
+		try {
+			E returnObj = entityManager.merge(entity);
+			return returnObj;
 		} catch (Exception e) {
-			e.printStackTrace();
+			throw new BusinessException(e.getMessage(), e);
 		}
 	}
 
