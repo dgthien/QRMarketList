@@ -43,7 +43,6 @@ import com.qrmarketlist.market.framework.SpringUtils;
 
 /**
  * Classe Util do sistema.
- * @author TOTVS
  */
 public class Util {
 
