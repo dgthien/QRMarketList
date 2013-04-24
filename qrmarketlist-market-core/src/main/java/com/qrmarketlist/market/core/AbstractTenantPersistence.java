@@ -6,7 +6,6 @@ import org.hibernate.criterion.Criterion;
 import org.hibernate.criterion.Order;
 import org.springframework.beans.factory.annotation.Autowired;
 
-import com.qrmarketlist.market.framework.BusinessException;
 
 /**
  * Classe que representa a entidade {@link AbstractTenantPersistence} 

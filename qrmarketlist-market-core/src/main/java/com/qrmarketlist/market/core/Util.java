@@ -39,7 +39,6 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import com.qrmarketlist.market.core.user.User;
-import com.qrmarketlist.market.framework.SpringUtils;
 
 /**
  * Classe Util do sistema.

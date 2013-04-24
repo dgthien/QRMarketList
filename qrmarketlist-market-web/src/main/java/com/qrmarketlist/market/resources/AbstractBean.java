@@ -15,7 +15,7 @@ import org.slf4j.LoggerFactory;
 
 import com.qrmarketlist.market.core.AbstractEntity;
 import com.qrmarketlist.market.core.AbstractPersistence;
-import com.qrmarketlist.market.framework.BusinessException;
+import com.qrmarketlist.market.core.BusinessException;
 
 public abstract class AbstractBean<E extends AbstractEntity> implements Serializable {
 	

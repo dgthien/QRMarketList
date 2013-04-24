@@ -6,8 +6,8 @@ import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Service;
 
 import com.qrmarketlist.market.core.AbstractPersistence;
+import com.qrmarketlist.market.core.BusinessException;
 import com.qrmarketlist.market.core.tenant.Tenant;
-import com.qrmarketlist.market.framework.BusinessException;
 
 @Service
 public class UserBusiness extends AbstractPersistence<User> {

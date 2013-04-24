@@ -5,9 +5,9 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.qrmarketlist.market.core.AbstractPersistence;
+import com.qrmarketlist.market.core.BusinessException;
 import com.qrmarketlist.market.core.Util;
 import com.qrmarketlist.market.core.tenant.Tenant;
-import com.qrmarketlist.market.framework.BusinessException;
 /**
  * Classe que representa as regras de negócios de {@link User} com papél de administrador 
  */

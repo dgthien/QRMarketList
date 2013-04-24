@@ -1,4 +1,4 @@
-package com.qrmarketlist.market.framework;
+package com.qrmarketlist.market.core;
 
 import org.springframework.beans.BeansException;
 import org.springframework.context.ApplicationContext;

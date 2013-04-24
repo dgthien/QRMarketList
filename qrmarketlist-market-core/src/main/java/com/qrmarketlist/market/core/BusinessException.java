@@ -1,4 +1,4 @@
-package com.qrmarketlist.market.framework;
+package com.qrmarketlist.market.core;
 
 
 /**

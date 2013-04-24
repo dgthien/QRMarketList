@@ -8,6 +8,7 @@ import javax.faces.bean.RequestScoped;
 
 import org.slf4j.LoggerFactory;
 
+import com.qrmarketlist.market.core.BusinessException;
 import com.qrmarketlist.market.core.tenant.Tenant;
 import com.qrmarketlist.market.core.tenant.TenantBusiness;
 import com.qrmarketlist.market.core.tenant.TenantEnum;
@@ -15,7 +16,6 @@ import com.qrmarketlist.market.core.user.User;
 import com.qrmarketlist.market.core.user.UserAdministratorBusiness;
 import com.qrmarketlist.market.core.user.UserBusiness;
 import com.qrmarketlist.market.core.user.UserEnum;
-import com.qrmarketlist.market.framework.BusinessException;
 
 @ManagedBean
 @RequestScoped

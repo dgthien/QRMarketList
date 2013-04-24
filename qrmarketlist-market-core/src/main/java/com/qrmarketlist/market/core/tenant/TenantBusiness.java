@@ -5,8 +5,8 @@ import java.util.List;
 import org.springframework.stereotype.Service;
 
 import com.qrmarketlist.market.core.AbstractPersistence;
+import com.qrmarketlist.market.core.BusinessException;
 import com.qrmarketlist.market.core.user.User;
-import com.qrmarketlist.market.framework.BusinessException;
 /**
  * Regras de negócio da entidade {@link Tenant}  
  */
