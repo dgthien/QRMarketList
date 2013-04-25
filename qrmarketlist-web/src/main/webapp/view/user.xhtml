@@ -32,14 +32,10 @@
 					value="#{userBean.entity.passwordConfirmation}" required="true" />
 			</h:panelGrid>
 		</p:panel>
-		<h:form id="userCommands">
-			<p:panel>
-				<p:commandButton value="Salvar" action="#{userBean.save}"
-					immediate="true" />
-				<p:commandButton value="Cancelar" action="#{userBean.cancel}"
-					immediate="true" />
-			</p:panel>
-		</h:form>
+		<p:panel>
+			<p:commandButton value="Salvar" action="#{userBean.save}" />
+			<p:commandButton value="Cancelar" action="#{userBean.cancel}" immediate="true" />
+		</p:panel>
 	</ui:define>
 </ui:composition>
 </html>
