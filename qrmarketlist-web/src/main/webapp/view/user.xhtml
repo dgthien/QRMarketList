@@ -8,35 +8,38 @@
 	xmlns:t="http://myfaces.apache.org/tomahawk">
 
 <ui:composition template="/template/standard.xhtml">
-	<t:saveState value="#{userBean.entity}"/>
 	<ui:define name="content">
-				<p:panel id="userPanel">
-					<p:messages id="msgs" />
-					<h:panelGrid columns="2">
-						<h:outputLabel value="Nome: *" for="name" />
-						<p:inputText id="name" value="#{userBean.entity.name}"
-							required="true" />
-	
-						<h:outputLabel value="Usuário: *" for="username" />
-						<p:inputText id="username" value="#{userBean.entity.username}"
-							required="true" />
-	
-						<h:outputLabel value="Senha: *" for="password" />
-						<p:password id="password" value="#{userBean.entity.password}"
-							required="true" />
-	
-						<h:outputLabel value="Confirmação de Senha *"
-							for="passwordConfirmation" />
-						<p:password id="passwordConfirmation"
-							value="#{userBean.entity.passwordConfirmation}" required="true" />
-					</h:panelGrid>
-				</p:panel>
-		<p:panel>
-			<p:commandButton value="Salvar" action="#{userBean.save}"
-				immediate="true" />
-			<p:commandButton value="Cancelar" action="#{userBean.cancel}"
-				immediate="true" />
+		<t:saveState value="#{userBean.entity}"/>
+		
+		<p:panel id="userPanel">
+			<p:messages id="msgs" />
+			<h:panelGrid columns="2">
+				<h:outputLabel value="Nome: *" for="name" />
+				<p:inputText id="name" value="#{userBean.entity.name}"
+					required="true" />
+
+				<h:outputLabel value="Usuário: *" for="username" />
+				<p:inputText id="username" value="#{userBean.entity.username}"
+					required="true" />
+
+				<h:outputLabel value="Senha: *" for="password" />
+				<p:password id="password" value="#{userBean.entity.password}"
+					required="true" />
+
+				<h:outputLabel value="Confirmação de Senha *"
+					for="passwordConfirmation" />
+				<p:password id="passwordConfirmation"
+					value="#{userBean.entity.passwordConfirmation}" required="true" />
+			</h:panelGrid>
 		</p:panel>
+		<h:form id="userCommands">
+			<p:panel>
+				<p:commandButton value="Salvar" action="#{userBean.save}"
+					immediate="true" />
+				<p:commandButton value="Cancelar" action="#{userBean.cancel}"
+					immediate="true" />
+			</p:panel>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>
