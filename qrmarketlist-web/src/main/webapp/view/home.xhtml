@@ -3,21 +3,12 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>
-	<title>QRMarketList Login</title>
-</h:head>
-
-<body>
-	<p:menubar>
-		<p:submenu label="Configurações">
-			<p:menuitem value="Impressão" url="#" />
-		</p:submenu>
-		<p:submenu label="Administração">
-			<p:menuitem value="Usuários" url="#{contextPath}/view/users.jsf" />
-			<p:menuitem value="Produtos" url="#{contextPath}/view/products.jsf" />
-		</p:submenu>
-	</p:menubar>
-</body>
+<ui:composition template="/template/standard.xhtml">
+	<ui:define name="content">
+		
+	</ui:define>
+</ui:composition>
 </html>

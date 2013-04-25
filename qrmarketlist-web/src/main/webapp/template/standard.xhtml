@@ -1,0 +1,52 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
+
+<h:head>
+	<meta http-equiv="Content-type" content="text/html; charset=UTF-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=100" />
+	<title>QRMarketList</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"></meta>
+	<meta name="description" content="QRMarketList"></meta>
+	<meta name="keywords" content="" />
+	<meta name="rating" content="General" />
+	<meta name="author" content="geny.herrera" />
+	<meta name="language" content="pt-br" />
+	<meta name="robots" content="ALL" />
+	<link href="#{facesContext.externalContext.request.contextPath}/resources/css/theme.css" rel="stylesheet" type="text/css" />
+	<link href="#{facesContext.externalContext.request.contextPath}/resources/favicon.ico" rel="icon" type="image/x-icon" />
+</h:head>
+
+<h:body>
+	<div>
+		<ui:insert name="top">
+			<ui:include src="topMenu.xhtml"></ui:include>
+		</ui:insert>
+	</div>
+	<div class="ui-maincontent-inner">
+		<ui:include src="menu.xhtml"></ui:include>
+		<div class="ui-content">
+			<f:view>
+				<h:form prependId="false" name="contentForm" id="contentForm"
+					onkeypress="return event.keyCode != 13">
+					<ui:insert name="contentErrorContainer">
+						<p:messages id="contentError" showSummary="false"
+							showDetail="true" autoUpdate="true" />
+					</ui:insert>
+					<ui:insert name="contentTitle"></ui:insert>
+					<ui:insert name="content"></ui:insert>
+					<ui:insert name="buttonMenu"></ui:insert>
+					<div class="footer">
+						<ui:include src="footer.xhtml"/>
+					</div>
+				</h:form>
+				<ui:insert name="extraContent"></ui:insert>
+			</f:view>
+		</div>
+	</div>
+</h:body>
+</html>

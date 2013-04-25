@@ -3,72 +3,76 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:p="http://primefaces.org/ui">
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
-<h:head>
-	<title>QRMarketList Login</title>
-</h:head>
+<ui:composition template="/template/standard.xhtml">
+	<ui:define name="content">
+		<h:form prependId="false">
+			<p:panel id="panel">
+				<h:panelGroup id="usersPanelGroup">
+					<p:fieldset legend="Usuários">
+						<p:dataTable id="dataTable" var="user"
+							value="#{userBean.listDataModel}"
+							selection="#{userBean.selectedEntity}" selectionMode="single"
+							paginator="true" rows="10"
+							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
+							rowsPerPageTemplate="5,10,15" paginatorPosition="bottom"
+							rowKey="#{user.id}">
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Nome" />
+								</f:facet>
+								<h:outputText value="#{user.name}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Usuário" />
+								</f:facet>
+								<h:outputText value="#{user.username}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Administrador" />
+								</f:facet>
+								<h:outputText value="#{user.administrator}" />
+							</p:column>
+							<p:column>
+								<f:facet name="header">
+									<h:outputText value="Status" />
+								</f:facet>
+								<h:outputText value="#{user.status}" />
+							</p:column>
+						</p:dataTable>
+					</p:fieldset>
+					<p:panel>
+						<p:commandButton value="Novo" action="#{userBean.create}" />
+						<p:commandButton value="Editar" action="#{userBean.edit}" />
+						<p:commandButton value="Inativar" onclick="inativation.show()" />
+						<p:commandButton value="Reativar" onclick="reactivation.show()" />
+					</p:panel>
+				</h:panelGroup>
+			</p:panel>
+			<p:confirmDialog id="inactivateDialog"
+				message="Tem certeza que que inativar esse registro?"
+				header="Inativação" severity="alert" widgetVar="inativation">
+				<p:commandButton id="inactivateConfirm" value="Sim"
+					oncomplete="inativation.hide()"
+					actionListener="#{userBean.inactivate}" ajax="true" />
+				<p:commandButton id="inactivateDecline" value="Não"
+					onclick="inativation.hide()" type="button" />
+			</p:confirmDialog>
 
-<body>
-	<p:menubar>
-		<p:submenu label="Configurações">
-			<p:menuitem value="Impressão" url="#" />
-		</p:submenu>
-		<p:submenu label="Administração">
-			<p:menuitem value="Usuários" url="#{contextPath}/view/users.jsf" />
-			<p:menuitem value="Produtos" url="#{contextPath}/view/products.jsf" />
-		</p:submenu>
-	</p:menubar>
-	<h:form prependId="false"> 
-		<p:panel id="panel">
-			<h:panelGroup id="usersPanelGroup">
-				<p:fieldset legend="Usuários">
-					<p:dataTable id="dataTable" var="user" value="#{userBean.listDataModel}"  selection="#{userBean.selectedEntity}" selectionMode="single"
-						paginator="true" rows="10" 	paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-						rowsPerPageTemplate="5,10,15" paginatorPosition="bottom" rowKey="#{user.id}">
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="Nome" />
-							</f:facet>
-							<h:outputText value="#{user.name}" />
-						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="Usuário" />
-							</f:facet>
-							<h:outputText value="#{user.username}" />
-						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="Administrador" />
-							</f:facet>
-							<h:outputText value="#{user.administrator}" />
-						</p:column>
-						<p:column>
-							<f:facet name="header">
-								<h:outputText value="Status" />
-							</f:facet>
-							<h:outputText value="#{user.status}" />
-						</p:column>
-					</p:dataTable>
-				</p:fieldset>
-				<p:panel>
-					<p:commandButton value="Novo" action="#{userBean.create}" />
-					<p:commandButton value="Editar" action="#{userBean.edit}"/>
-					<p:commandButton value="Inativar" onclick="inativation.show()" />
-					<p:commandButton value="Reativar" onclick="reactivation.show()"/>
-				</p:panel>
-			</h:panelGroup>
-		</p:panel>
-		<p:confirmDialog id="inactivateDialog" message="Tem certeza que que inativar esse registro?" header="Inativação" severity="alert" widgetVar="inativation">
-			<p:commandButton id="inactivateConfirm" value="Sim" oncomplete="inativation.hide()" actionListener="#{userBean.inactivate}" ajax="true"/>
-			<p:commandButton id="inactivateDecline" value="Não" onclick="inativation.hide()" type="button" />
-		</p:confirmDialog>
-		
-		<p:confirmDialog id="reactivateDialog" message="Tem certeza que que reativar esse registro?" header="Reativação" severity="alert" widgetVar="reactivation">
-			<p:commandButton id="reactivateConfirm" value="Sim" oncomplete="reactivation.hide()" actionListener="#{userBean.reactivate}"  ajax="true" />
-			<p:commandButton id="reactivateDecline" value="Não" onclick="reactivation.hide()" type="button" />
-		</p:confirmDialog>
-	</h:form>
-</body>
+			<p:confirmDialog id="reactivateDialog"
+				message="Tem certeza que que reativar esse registro?"
+				header="Reativação" severity="alert" widgetVar="reactivation">
+				<p:commandButton id="reactivateConfirm" value="Sim"
+					oncomplete="reactivation.hide()"
+					actionListener="#{userBean.reactivate}" ajax="true" />
+				<p:commandButton id="reactivateDecline" value="Não"
+					onclick="reactivation.hide()" type="button" />
+			</p:confirmDialog>
+		</h:form>
+	</ui:define>
+</ui:composition>
 </html>

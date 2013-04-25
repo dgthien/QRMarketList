@@ -1,36 +1,95 @@
-<?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-	xmlns:ui="http://java.sun.com/jsf/facelets"
-	xmlns:h="http://java.sun.com/jsf/html"
-	xmlns:f="http://java.sun.com/jsf/core"
-	xmlns:p="http://primefaces.org/ui">
-
+<!DOCTYPE html>
+<html lang="pt-BR">
 <head>
-<title>QRMarketList Login</title>
-<link rel="stylesheet" href="resources/css/style.css"/>
+<meta charset="utf-8" />
+<meta name="description" content="QRMarketList" />
+<title>QRMarketList</title>
+<link
+	href="#{facesContext.externalContext.request.contextPath}/resources/css/theme.css"
+	rel="stylesheet" type="text/css" />
+<link rel="icon" type="image/ico" href="//mail.google.com/favicon.ico" />
 </head>
-
 <body>
-	<center>
-		<form action="j_spring_security_check" method="post" class="login">
-			<p>
-				<label for="j_username">Usuário:</label> 
-				<input type="text" name="j_username" id="j_username" />
-				<script>document.getElementById("j_username").focus();</script>
-			</p>
-	
-			<p>
-			    <label for="password">Senha:</label>
-			    <input type="password" name="j_password" id="j_password"/>
-	    	</p>
-			
-			<p class="login-submit">
-	      		<button type="submit" class="login-button">Logar</button>
-	    	</p>
-	    	
-	    	<p class="forgot-password"><a href="index.xhtml">Esqueceu sua senha?</a></p>
-		</form>
-	</center>
+	<div class="wrapper">
+
+		<div class="google-header-bar">
+			<div class="header content clearfix">
+				<img class="logo" src="//ssl.gstatic.com/images/logos/google_logo_41.png" alt="Google" /> 
+				<span class="signup-button">
+					<a id="link-signup" class="g-button g-button-red">Criar conta </a>
+				</span>
+			</div>
+		</div>
+
+		<div class="main content clearfix">
+			<div class="sign-in">
+				<div class="signin-box">
+					<h2>
+						Login
+					</h2>
+					<form action="j_spring_security_check" method="post">
+						<div class="email-div">
+							<label for="j_username"><strong class="user-label">Usuário</strong></label> 
+							<input type="text" name="j_username" id="j_username" value="" x-webkit-speech="x-webkit-speech" />
+						</div>
+						<div class="passwd-div">
+							<label for="j_password"><strong class="passwd-label">Senha</strong></label>
+							<input type="password" name="j_password" id="j_password"/>
+						</div>
+						<input type="submit" class="g-button g-button-submit" name="signIn" id="signIn" value="Login"/>
+						<label class="remember" onclick=""> 
+							<input type="checkbox" name="PersistentCookie" id="PersistentCookie" value="yes" checked="checked"/>
+							<strong class="remember-label"> Continuar conectado </strong>
+						</label> 
+					</form>
+					<ul>
+						<li><a id="link-forgot-passwd" target="_top"> Não consegue acessar a sua conta? </a></li>
+					</ul>
+				</div>
+				<div class="signin-box">
+					<ul class="formset formset-right">
+						<li>
+							<a href="#" class="button facebook fbSignupLogin">Sign in with Facebook</a>
+						</li>
+						<li>
+							<a href="#" class="button google googSignup">Sign in with Google</a>
+						</li>
+					</ul>
+				</div>
+			</div>
+
+			<div class="product-info mail">
+				<div class="product-headers">
+					<h1 class="redtext">QRMarketList</h1>
+					<h2>O melhor aplicativo para controlar suas compras.</h2>
+				</div>
+				<p>O QRMarketList foi criado para te auxiliar a controlar suas compras. Confira abaixo algumas das
+				inumeras vantagens que você ganha utilizando o QRMarketList:</p>
+				<ul class="features">
+					<li>
+						<img src="http://t3.gstatic.com/images?q=tbn:ANd9GcS6ZqlGa4pYNk-hjAzkr0BvazNCX6FAFsKdGac5kHODW8SACKGXFg" alt=""/>
+						<p class="title">Leitura de QRCode</p>
+							<p>	Com uma simples leitura do QRCode é possivel adicionar o produto a sua lista.
+							</p>
+					</li>
+					<li>
+						<img src="http://scanpower.com/fbapower/TiB/wp-content/uploads/2011/07/Barcode-Scanner-Icon1.png" alt=""/>
+						<p class="title">Leitura Código de Barras</p>
+							<p>Além da leitura por QRCode tambem pode ser feita a leitura por código de barras.</p>
+					</li>
+					<li>
+						<img src="//ssl.gstatic.com/images/icons/feature/mobile_phone-42.gif" alt=""/>
+						<p class="title">Acesso por celular</p>
+							<p> Acesse o QRMarketList pelo seu dispositivo mobile.</p>
+					</li>
+					<li>
+						<img src="http://t0.gstatic.com/images?q=tbn:ANd9GcRJdnB4qkLfYaWT5vRhgsc2hpXJ-gr2lJ2Ma5sYTOGXnzsR9XSwkw" alt=""/>
+						<p class="title">Comparador de Preços</p>
+							<p> Realiza a compração de preços entre os vários estabelecimentos associados.</p>
+					</li>
+				</ul>
+			</div>
+		</div>
+	</div>
 </body>
 </html>

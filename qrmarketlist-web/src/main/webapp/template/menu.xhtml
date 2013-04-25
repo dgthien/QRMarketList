@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:sec="http://www.springframework.org/security/tags">
+	
+<nav id="menu-wrap">    
+	<ul id="menu">
+		<li><a href="#{facesContext.externalContext.request.contextPath}/view/home.jsf">Home</a></li>
+
+		<li>
+			<a href="">Configurações</a>
+			<ul>
+				<li><a href="">Impressão</a></li>
+			</ul>		
+		</li>
+		
+		<li>
+			<a href="">Administração</a>
+			<ul>
+				<li><a href="#{facesContext.externalContext.request.contextPath}/view/users.jsf">Usuários</a>
+					<ul>
+						<li><a href="">Item Exemplo</a></li>
+					</ul>				
+				</li>
+				<li><a href="#{facesContext.externalContext.request.contextPath}/view/products.jsf">Produtos</a></li>
+			</ul>
+		</li>
+	</ul>
+</nav>
+</ui:composition>

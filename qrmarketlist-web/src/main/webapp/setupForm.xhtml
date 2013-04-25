@@ -31,11 +31,11 @@
 		</p:panel>
 		<p:panel  header="Dados do Tenant">
 			<h:panelGrid columns="2">
-				<h:outputLabel value="Nome: *" for="nome" />
-				<p:inputText label="#{bundle.name}" value="#{setupBean.tenant.name}" required="true"/>
+				<h:outputLabel value="Nome: *" for="nome_tenant" />
+				<p:inputText id="nome_tenant" label="#{bundle.name}" value="#{setupBean.tenant.name}" required="true"/>
 				
 				<h:outputLabel value="Dominio: *" for="domain" />
-				<p:inputText label="#{bundle.domain}" value="#{setupBean.tenant.domain}" required="true"/>
+				<p:inputText id="domain" label="#{bundle.domain}" value="#{setupBean.tenant.domain}" required="true"/>
 			</h:panelGrid>
 		</p:panel>
 		<p:commandButton value="Salvar" action="#{setupBean.save}" ajax="false"/>

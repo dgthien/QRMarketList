@@ -16,7 +16,7 @@
 	
 	<bean id="entityManagerFactory" 
 		  class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
-		<property name="persistenceUnitName" value="qrmarketlist_marketPU" />
+		<property name="persistenceUnitName" value="qrmarketlist_PU" />
 	</bean>
 	
 	<bean id="transactionManager" 
