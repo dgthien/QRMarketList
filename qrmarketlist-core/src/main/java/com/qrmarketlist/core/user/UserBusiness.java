@@ -3,14 +3,19 @@ package com.qrmarketlist.core.user;
 import java.util.List;
 
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qrmarketlist.core.AbstractPersistence;
+import com.qrmarketlist.core.AuthenticationContext;
 import com.qrmarketlist.core.BusinessException;
 import com.qrmarketlist.core.tenant.Tenant;
 
 @Service
 public class UserBusiness extends AbstractPersistence<User> {
+	
+	@Autowired
+	private AuthenticationContext authenticationContext;
 	
 	/**
 	 * Recupera usuários por nome e senha
@@ -86,6 +91,7 @@ public class UserBusiness extends AbstractPersistence<User> {
 				user.setAdministrator(true);
 				user.setPassword(user.getPassword());
 				user.setPasswordConfirmation(user.getPasswordConfirmation());
+				user.setTenant(authenticationContext.getTenant());
 				user = createOrUpdate(user);
 			}
 		} catch (BusinessException e) {
