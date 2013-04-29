@@ -4,17 +4,16 @@
 <meta charset="utf-8" />
 <meta name="description" content="QRMarketList" />
 <title>QRMarketList</title>
-<link
-	href="#{facesContext.externalContext.request.contextPath}/resources/css/theme.css"
-	rel="stylesheet" type="text/css" />
-<link rel="icon" type="image/ico" href="//mail.google.com/favicon.ico" />
+<link href="#{facesContext.externalContext.request.contextPath}/resources/css/theme.css" rel="stylesheet" type="text/css" />
+<link href="#{facesContext.externalContext.request.contextPath}/resources/favicon.ico" rel="icon" type="image/x-icon" />
+<link href="http://fonts.googleapis.com/css?family=Londrina+Shadow" rel="stylesheet" type="text/css"/>
 </head>
 <body>
 	<div class="wrapper">
 
 		<div class="google-header-bar">
 			<div class="header content clearfix">
-				<img class="logo" src="//ssl.gstatic.com/images/logos/google_logo_41.png" alt="Google" /> 
+				<label class="logo">QRMarketList</label> 
 				<span class="signup-button">
 					<a id="link-signup" class="g-button g-button-red">Criar conta </a>
 				</span>
@@ -46,7 +45,7 @@
 						<li><a id="link-forgot-passwd" target="_top"> Não consegue acessar a sua conta? </a></li>
 					</ul>
 				</div>
-				<div class="signin-box">
+				<!-- <div class="signin-box">
 					<ul class="formset formset-right">
 						<li>
 							<a href="#" class="button facebook fbSignupLogin">Sign in with Facebook</a>
@@ -55,7 +54,7 @@
 							<a href="#" class="button google googSignup">Sign in with Google</a>
 						</li>
 					</ul>
-				</div>
+				</div> -->
 			</div>
 
 			<div class="product-info mail">
@@ -63,27 +62,28 @@
 					<h1 class="redtext">QRMarketList</h1>
 					<h2>O melhor aplicativo para controlar suas compras.</h2>
 				</div>
+				<p>Com o QRMarketList você nunca mais esquecerá da sua lista de compras e terá o valor atual da sua compra.</p>
 				<p>O QRMarketList foi criado para te auxiliar a controlar suas compras. Confira abaixo algumas das
 				inumeras vantagens que você ganha utilizando o QRMarketList:</p>
 				<ul class="features">
 					<li>
-						<img src="http://t3.gstatic.com/images?q=tbn:ANd9GcS6ZqlGa4pYNk-hjAzkr0BvazNCX6FAFsKdGac5kHODW8SACKGXFg" alt=""/>
+						<img src="#{facesContext.externalContext.request.contextPath}/resources/images/qrcode_reader.png" alt=""/>
 						<p class="title">Leitura de QRCode</p>
-							<p>	Com uma simples leitura do QRCode é possivel adicionar o produto a sua lista.
+							<p>	Com uma simples leitura do QRCode é possivel vincular o produto lido com o produto da sua lista.
 							</p>
 					</li>
 					<li>
-						<img src="http://scanpower.com/fbapower/TiB/wp-content/uploads/2011/07/Barcode-Scanner-Icon1.png" alt=""/>
+						<img src="#{facesContext.externalContext.request.contextPath}/resources/images/barcode_reader.png" alt=""/>
 						<p class="title">Leitura Código de Barras</p>
-							<p>Além da leitura por QRCode tambem pode ser feita a leitura por código de barras.</p>
+							<p>Além da leitura por QRCode tambem pode ser feita a leitura por código de barras com a mesma funcionalidade.</p>
 					</li>
 					<li>
-						<img src="//ssl.gstatic.com/images/icons/feature/mobile_phone-42.gif" alt=""/>
+						<img src="#{facesContext.externalContext.request.contextPath}/resources/images/mobile_device.png" alt=""/>
 						<p class="title">Acesso por celular</p>
-							<p> Acesse o QRMarketList pelo seu dispositivo mobile.</p>
+							<p> Acesse o QRMarketList pelo seu dispositivo mobile, computador ou tablet.</p>
 					</li>
 					<li>
-						<img src="http://t0.gstatic.com/images?q=tbn:ANd9GcRJdnB4qkLfYaWT5vRhgsc2hpXJ-gr2lJ2Ma5sYTOGXnzsR9XSwkw" alt=""/>
+						<img src="#{facesContext.externalContext.request.contextPath}/resources/images/price_compare.png" alt=""/>
 						<p class="title">Comparador de Preços</p>
 							<p> Realiza a compração de preços entre os vários estabelecimentos associados.</p>
 					</li>
