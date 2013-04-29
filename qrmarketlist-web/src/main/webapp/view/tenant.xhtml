@@ -11,6 +11,7 @@
 	<ui:composition template="/template/standard.xhtml">
 
 		<ui:define name="content">
+			<h:form prependId="false" name="contentForm" id="contentForm" onkeypress="return event.keyCode != 13">
 			<t:saveState value="#{tenantBean}"/>
 			
 			<p:panel id="panel">
@@ -47,6 +48,7 @@
 			
 			<p:commandButton value="Salvar" action="#{tenantBean.save}" ajax="false"/>
 			<p:commandButton value="Cancelar" action="#{tenantBean.cancel}" immediate="true"/>
+			</h:form>
 		</ui:define>
 		
 		

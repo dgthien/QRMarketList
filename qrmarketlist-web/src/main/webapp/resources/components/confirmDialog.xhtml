@@ -2,8 +2,9 @@
      "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
 	  xmlns:cc="http://java.sun.com/jsf/composite"
-	  xmlns:p="http://primefaces.org/ui"
-	  xmlns:ele="http://java.sun.com/jsf/composite/components">
+	  xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui">
 
 	<cc:interface>
 		<cc:attribute name="id" required="false" />
@@ -30,14 +31,14 @@
 						 header="#{cc.attrs.title}" 
 						 severity="#{cc.attrs.severity}"
 						 widgetVar="#{cc.attrs.widgetVar}">
-			<p:commandButton value="#{bundle.yes}" 
+			<p:commandButton value="Sim" 
 							   action="#{cc.attrs.action}"
 					 		   oncomplete="#{cc.attrs.widgetVar}.hide(); #{cc.attrs.oncomplete};" 
 					 		   onclick="#{cc.attrs.onclick}"
 					 		   update="#{cc.attrs.update}"
 					 		   ajax="true"
 					 		   immediate="#{cc.attrs.immediate}"/>
-			<p:commandButton value="#{bundle.no}"
+			<p:commandButton value="Não"
 							   onclick="#{cc.attrs.widgetVar}.hide(); return false;" />
 		</p:confirmDialog>
 	</cc:implementation>

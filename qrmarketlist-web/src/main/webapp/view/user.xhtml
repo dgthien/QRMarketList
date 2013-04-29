@@ -9,6 +9,7 @@
 
 <ui:composition template="/template/standard.xhtml">
 	<ui:define name="content">
+		<h:form prependId="false" name="contentForm" id="contentForm" onkeypress="return event.keyCode != 13">
 		<t:saveState value="#{userBean.entity}"/>
 		
 		<p:panel id="userPanel">
@@ -36,6 +37,7 @@
 			<p:commandButton value="Salvar" action="#{userBean.save}" />
 			<p:commandButton value="Cancelar" action="#{userBean.cancel}" immediate="true" />
 		</p:panel>
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

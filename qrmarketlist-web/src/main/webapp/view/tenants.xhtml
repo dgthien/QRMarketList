@@ -10,29 +10,31 @@
 
 	<ui:composition template="/template/standard.xhtml">
 		<ui:define name="content">
-			<p:panel id="panel">
+			<h:form prependId="false" name="contentForm" id="contentForm" onkeypress="return event.keyCode != 13">
 				<h:panelGroup id="tenants">
-					<qrm:dataTable managedBean="#{tenantBean}" var="model" rowKey="#{model.id}">
-				        <p:column sortBy="#{model.name}" headerText="Nome">
-				            <h:outputText value="#{model.name}" />
-				        </p:column>	
-				        <p:column sortBy="#{model.domain}" headerText="Domínio">
-				            <h:outputText value="#{model.domain}" />
-				        </p:column>
-				        <p:column sortBy="#{model.status}" headerText="Status">  
-				            <h:outputText value="#{model.status}" />
-				        </p:column>
-				    </qrm:dataTable>
-			    </h:panelGroup>
-			</p:panel>
-			<p:commandButton value="Novo" action="#{tenantBean.create}" ajax="false"/>
-			<p:commandButton value="Editar" action="#{tenantBean.edit}"/>
-			<qrm:confirmDialog widgetVar="inactivate" title="Inativar"
-					   		   action="#{tenantBean.inactivate}" update="" />
-			<qrm:confirmDialog widgetVar="reactivate" title="Reativar"
-					   		   action="#{tenantBean.reactivate}" update="" />
-			<qrm:confirmDialog widgetVar="suspended" title="Suspender"
-					   		   action="#{tenantBean.suspended}" update="" />
+					<p:panel id="panel">
+						<qrm:dataTable id="table" managedBean="#{tenantBean}" var="model" rowKey="#{model.id}">
+					        <p:column sortBy="#{model.name}" headerText="Nome">
+					            <h:outputText value="#{model.name}" />
+					        </p:column>	
+					        <p:column sortBy="#{model.domain}" headerText="Domínio">
+					            <h:outputText value="#{model.domain}" />
+					        </p:column>
+					        <p:column sortBy="#{model.status}" headerText="Status">  
+					            <h:outputText value="#{model.status}" />
+					        </p:column>
+					    </qrm:dataTable>
+					</p:panel>
+				</h:panelGroup>
+				<p:commandButton value="Novo" action="#{tenantBean.create}" ajax="false"/>
+				<p:commandButton value="Editar" action="#{tenantBean.edit}"/>
+				<qrm:confirmDialog widgetVar="inactivate" title="Inativar"
+						   		   action="#{tenantBean.inactivate}" update="@form" />
+				<qrm:confirmDialog widgetVar="reactivate" title="Reativar"
+						   		   action="#{tenantBean.reactivate}" update="@form" />
+				<qrm:confirmDialog widgetVar="suspended" title="Suspender"
+						   		   action="#{tenantBean.suspended}" update="@form" />
+			</h:form>
 		</ui:define>
 	</ui:composition>
 </html>
