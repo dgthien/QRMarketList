@@ -1,0 +1,45 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:cc="http://java.sun.com/jsf/composite"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:ele="http://java.sun.com/jsf/composite/components">
+
+	<cc:interface>
+		<cc:attribute name="id" required="false" />
+		<cc:attribute name="buttonId" required="false" default="buttonDialog" />
+		<cc:attribute name="message" required="false" default="#{bundle.you_really_want_to_perform_this_action}"/>
+		<cc:attribute name="severity" required="false" default="alert"/>
+		<cc:attribute name="widgetVar" required="true" />
+		<cc:attribute name="action" method-signature="java.lang.String action()"/>
+		<cc:attribute name="update" required="false" />
+		<cc:attribute name="title" required="true" />
+		<cc:attribute name="onclick" required="false" />
+		<cc:attribute name="oncomplete" required="false" />
+		<cc:attribute name="immediate" required="false" />
+		<cc:attribute name="disabled" required="false" />
+	</cc:interface>
+
+	<cc:implementation>
+		<p:commandButton id="#{cc.attrs.buttonId}"
+						   value="#{cc.attrs.title}" 
+						   onclick="#{cc.attrs.widgetVar}.show();return false;"
+						   disabled="#{cc.attrs.disabled}"/>
+		<p:confirmDialog id="#{cc.attrs.id}" 
+						 message="#{cc.attrs.message}"
+						 header="#{cc.attrs.title}" 
+						 severity="#{cc.attrs.severity}"
+						 widgetVar="#{cc.attrs.widgetVar}">
+			<p:commandButton value="#{bundle.yes}" 
+							   action="#{cc.attrs.action}"
+					 		   oncomplete="#{cc.attrs.widgetVar}.hide(); #{cc.attrs.oncomplete};" 
+					 		   onclick="#{cc.attrs.onclick}"
+					 		   update="#{cc.attrs.update}"
+					 		   ajax="true"
+					 		   immediate="#{cc.attrs.immediate}"/>
+			<p:commandButton value="#{bundle.no}"
+							   onclick="#{cc.attrs.widgetVar}.hide(); return false;" />
+		</p:confirmDialog>
+	</cc:implementation>
+
+</html>

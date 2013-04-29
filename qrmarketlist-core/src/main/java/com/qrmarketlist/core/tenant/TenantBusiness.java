@@ -2,16 +2,21 @@ package com.qrmarketlist.core.tenant;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.qrmarketlist.core.AbstractPersistence;
 import com.qrmarketlist.core.BusinessException;
 import com.qrmarketlist.core.user.User;
+import com.qrmarketlist.core.user.UserAdministratorBusiness;
 /**
  * Regras de negócio da entidade {@link Tenant}  
  */
 @Service
 public class TenantBusiness extends AbstractPersistence<Tenant> {
+	
+	@Autowired
+	private UserAdministratorBusiness userAdministratorBusiness;
 	
 	/**
 	 * Recupera {@link Tenant} por domínio
@@ -49,10 +54,12 @@ public class TenantBusiness extends AbstractPersistence<Tenant> {
 	    Tenant newTenant = null;
 		if (tenant.getId() != null) {
 		    newTenant = createOrUpdate(tenant);
+		    userAdministratorBusiness.saveOrUpdate(user, newTenant);
 		} else {
 			tenant.setGlobalAdministrator(false);
 			tenant.setStatus(TenantEnum.ACTIVE);
 			newTenant = createOrUpdate(tenant);
+			userAdministratorBusiness.saveOrUpdate(user, newTenant);
 		}
 		return newTenant;
 	}

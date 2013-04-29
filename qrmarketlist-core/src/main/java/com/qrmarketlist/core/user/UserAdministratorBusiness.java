@@ -87,4 +87,13 @@ public class UserAdministratorBusiness extends AbstractPersistence<User> {
 			return list.get(0);
 	}
 	
+	public User retrieveUserAdministrator(Tenant tenant) {
+		List<User> list = super.retrieve(eq("tenant", tenant), eq("administrator", true));
+		if (list == null || list.size() == 0)
+			return null;
+		User user = list.get(0);
+		user.setEmailConfirmation(user.getEmail());
+		return user;
+	}
+	
 }

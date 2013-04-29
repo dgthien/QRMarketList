@@ -12,7 +12,7 @@ import com.qrmarketlist.core.AbstractEntity;
  * Classe que representa a entidade {@link Tenant}  
  */
 @Entity
-@Table(name = "ELE_TENANT")
+@Table(name = "TENANT")
 public class Tenant extends AbstractEntity {
     
     private static final long serialVersionUID = 1L;

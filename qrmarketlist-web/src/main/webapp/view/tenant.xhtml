@@ -1,0 +1,55 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:qrm="http://java.sun.com/jsf/composite/components"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+	<ui:composition template="/template/standard.xhtml">
+
+		<ui:define name="content">
+			<t:saveState value="#{tenantBean}"/>
+			
+			<p:panel id="panel">
+			
+				<p:focus for="formItemNameTenant:name"/>
+				<qrm:formItem id="formItemNameTenant" label="Nome" required="true">
+					<p:inputText id="name" label="Nome" value="#{tenantBean.entity.name}" required="true"/>
+				</qrm:formItem>
+				<qrm:formItem label="Domínio" required="true">
+					<p:inputText label="Domínio" value="#{tenantBean.entity.domain}" required="true"/>
+				</qrm:formItem>
+				<br/>
+				<p:fieldset id="fsAdm" legend="Usuário Administrador">
+			        <qrm:formItem label="Nome" required="true">
+						<p:inputText label="Nome" value="#{tenantBean.user.name}" required="true"/>
+					</qrm:formItem>
+					<qrm:formItem label="Usuário" required="true">
+						<p:inputText value="#{tenantBean.user.username}" required="true" label="Usuário"/>
+					</qrm:formItem>
+					<qrm:formItem label="Senha" required="true" tipText="#{bundle.blank_password_update}">
+						<p:password value="#{tenantBean.user.password}" label="Senha"/>
+					</qrm:formItem>
+					<qrm:formItem label="Confirmação de Senha" required="true">
+						<p:password value="#{tenantBean.user.passwordConfirmation}" label="Confirmação de Senha"/>
+					</qrm:formItem>
+					<qrm:formItem label="Email" required="true">
+						<p:inputText value="#{tenantBean.user.email}" required="true" label="Email"/>
+					</qrm:formItem>
+					<qrm:formItem label="Confirmação de Email" required="true">
+						<p:inputText value="#{tenantBean.user.emailConfirmation}" required="true" label="Confirmação de Email"/>
+					</qrm:formItem>
+			    </p:fieldset>
+			</p:panel>
+			
+			<p:commandButton value="Salvar" action="#{tenantBean.save}" ajax="false"/>
+			<p:commandButton value="Cancelar" action="#{tenantBean.cancel}" immediate="true"/>
+		</ui:define>
+		
+		
+	</ui:composition>
+
+</html>

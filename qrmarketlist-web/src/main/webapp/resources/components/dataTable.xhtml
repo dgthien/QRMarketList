@@ -1,0 +1,43 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	  xmlns:cc="http://java.sun.com/jsf/composite"
+	  xmlns:p="http://primefaces.org/ui"
+	  xmlns:c="http://java.sun.com/jsp/jstl/core"
+	  xmlns:t="http://myfaces.apache.org/tomahawk">
+
+	<cc:interface>
+		<cc:attribute name="id" required="false" />
+		<cc:attribute name="managedBean" required="true" />
+		<cc:attribute name="var" required="true" />
+		<cc:attribute name="rowKey" required="false" />
+		<cc:attribute name="paginator" required="false" default="true"/>
+		<cc:attribute name="rows" required="false" default="10"/>
+		<cc:attribute name="paginatorPosition" required="false" default="bottom"/>
+		<cc:attribute name="paginatorAlwaysVisible" required="false" default="true"/>
+		<cc:attribute name="selectionMode" required="false" default="single"/>
+		<cc:attribute name="widgetVar" required="false" default="table"/>
+	</cc:interface>
+	
+	<cc:implementation>
+		<t:saveState value="#{cc.attrs.managedBean.listDataModel}" />
+		<p:dataTable id="#{cc.attrs.id}"
+					 value="#{cc.attrs.managedBean.listDataModel}"
+					 rowKey="#{cc.attrs.rowKey}" 
+					 paginator="#{cc.attrs.paginator}" 
+					 rows="#{cc.attrs.rows}"
+					 selection="#{cc.attrs.managedBean.selectedEntity}"
+					 paginatorPosition="#{cc.attrs.paginatorPosition}" 
+					 paginatorAlwaysVisible="#{cc.attrs.paginatorAlwaysVisible}"
+					 selectionMode="#{cc.attrs.selectionMode}" 
+					 emptyMessage="#{bundle.no_items_found}"
+					 widgetVar="#{cc.attrs.widgetVar}">
+			<c:set target="#{component}" 
+				   property="var" 
+				   value="#{cc.attrs.var}"/>
+				   
+			<cc:insertChildren/>
+		</p:dataTable>
+	</cc:implementation>
+
+</html>

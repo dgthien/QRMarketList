@@ -1,0 +1,35 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+     "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:cc="http://java.sun.com/jsf/composite"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:p="http://primefaces.org/ui">
+ 
+	<cc:interface>
+		<cc:attribute name="label"/>
+		<cc:attribute name="required" required="false" default="false"/>
+		<cc:attribute name="tipText" required="false"/>
+		<cc:attribute name="view" required="false" default="true"/>
+		<cc:attribute name="classLabel" required="false"/>
+	</cc:interface>
+ 
+	<cc:implementation>
+		<h:panelGroup layout="block" styleClass="formItem" rendered="#{cc.attrs.view}">
+			<h:panelGroup layout="block" styleClass="formItemLabel">
+				<h:outputText value="#{cc.attrs.label}" class="#{cc.attrs.classLabel}"/>
+				<h:panelGroup layout="block" rendered="#{cc.attrs.required}">
+					<span class="required-identifier">*</span>
+				</h:panelGroup>
+				<h:panelGroup layout="block" rendered="#{cc.attrs.tipText != null}">
+					<p:commandLink id="hint" value="[ ? ]"/>  
+					<p:tooltip for="hint" showEffect="fade" hideEffect="fade"
+							   value="#{cc.attrs.tipText}" />
+				</h:panelGroup>
+			</h:panelGroup>
+			<h:panelGroup layout="block" styleClass="formItemField">
+				<cc:insertChildren/>
+			</h:panelGroup>
+		</h:panelGroup>
+	</cc:implementation>
+	
+</html>

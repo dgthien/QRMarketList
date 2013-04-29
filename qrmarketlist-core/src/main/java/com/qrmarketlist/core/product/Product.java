@@ -10,7 +10,7 @@ import javax.persistence.Table;
 import com.qrmarketlist.core.AbstractEntity;
 
 @Entity
-@Table(name = "QRMARKET_PRODUCT")
+@Table(name = "PRODUCT")
 @PrimaryKeyJoinColumn(name = "ID")
 public class Product extends AbstractEntity {
 

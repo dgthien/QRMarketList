@@ -7,6 +7,7 @@ import javax.persistence.Enumerated;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 import javax.persistence.Transient;
+import javax.validation.constraints.Size;
 
 import com.qrmarketlist.core.AbstractTenantEntity;
 
@@ -14,7 +15,7 @@ import com.qrmarketlist.core.AbstractTenantEntity;
  * Classe que representa a entidade {@link User}
  */
 @Entity
-@Table(name = "QRMARKET_USER")
+@Table(name = "USER")
 @PrimaryKeyJoinColumn(name = "ID")
 public class User extends AbstractTenantEntity {
 
@@ -25,6 +26,8 @@ public class User extends AbstractTenantEntity {
 	private String passwordConfirmation;
 	private Boolean administrator;
 	private UserEnum status;
+	private String email;
+	private String emailConfirmation;
 
 	@Column(name = "NAME", length = 100, nullable = false)
 	public String getName() {
@@ -105,6 +108,40 @@ public class User extends AbstractTenantEntity {
 
 	public void setStatus(UserEnum status) {
 		this.status = status;
+	}
+	
+	/**
+	 * Retorna o email do usuário
+	 * @return String
+	 */
+	@Size(max = 50)
+	@Column(name = "EMAIL", length = 50, nullable = true)
+	public String getEmail() {
+		return email;
+	}
+	
+	/**
+	 * {@link User#getEmail()}
+	 */
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	/**
+	 * Retorna a confirmação de email do cadastro de usuário 
+	 * (apenas para confirmação no cadastro de usuário)
+	 * @return String
+	 */
+	@Transient
+	public String getEmailConfirmation() {
+		return emailConfirmation;
+	}
+
+	/**
+	 * {@link User#getEmailConfirmation()}
+	 */
+	public void setEmailConfirmation(String emailConfirmation) {
+		this.emailConfirmation = emailConfirmation;
 	}
 	
 }
