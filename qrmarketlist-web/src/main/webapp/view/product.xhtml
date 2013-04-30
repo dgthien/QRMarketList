@@ -1,0 +1,45 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:qrm="http://java.sun.com/jsf/composite/components"
+	xmlns:t="http://myfaces.apache.org/tomahawk">
+
+	<ui:composition template="/template/standard.xhtml">
+	
+		<ui:define name="content">
+			<h:form prependId="false" name="contentForm" id="contentForm" onkeypress="return event.keyCode != 13">
+			<t:saveState value="#{productBean.entity}"/>
+			
+			<p:panel id="productPanel">
+			
+			<p:messages id="msgs" />
+				<p:fieldset id="fsProduct" legend="Cadastro de Produto">
+					<p:focus for="formItemNameProduct:name"/>
+					<qrm:formItem id="formItemNameProduct" label="Nome" required="true">
+						<p:inputText id="name" value="#{productBean.entity.name}" required="true"/>
+					</qrm:formItem><br></br>
+					<qrm:formItem label="Descrição" required="true">
+						<p:inputTextarea rows="9" cols="30" counter="counter" maxlength="200"       
+    									 counterTemplate="{0} characters remaining." 
+    									 autoResize="false" value="#{productBean.entity.description}"/><br></br>  
+						<h:outputText id="counter" />  
+					</qrm:formItem><br></br>
+					<qrm:formItem label="Preço" required="true">
+						<p:inputText id="price" value="#{productBean.entity.price}" required="true"/>
+					</qrm:formItem><br></br>
+					<qrm:formItem label="Cod. Barras" required="true">
+						<p:inputText id="ean" value="#{productBean.entity.ean}" required="true"/>
+					</qrm:formItem><br></br>
+				</p:fieldset>
+			</p:panel>
+			
+			<p:commandButton value="Salvar" action="#{productBean.save}" ajax="false" />
+			<p:commandButton value="Cancelar" action="#{productBean.cancel}" immediate="true" />
+			</h:form>
+		</ui:define>
+	</ui:composition>
+</html>

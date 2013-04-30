@@ -7,16 +7,17 @@ import javax.persistence.Enumerated;
 import javax.persistence.PrimaryKeyJoinColumn;
 import javax.persistence.Table;
 
-import com.qrmarketlist.core.AbstractEntity;
+import com.qrmarketlist.core.AbstractTenantEntity;
 
 @Entity
 @Table(name = "PRODUCT")
 @PrimaryKeyJoinColumn(name = "ID")
-public class Product extends AbstractEntity {
+public class Product extends AbstractTenantEntity {
 
 	private static final long serialVersionUID = 1L;
 	private String name;
 	private String description;
+	private String ean;
 	private ProductEnum status;
 	private Double price;
 	private Boolean qrCodePrinted;
@@ -37,6 +38,15 @@ public class Product extends AbstractEntity {
 
 	public void setDescription(String description) {
 		this.description = description;
+	}
+	
+	@Column(name = "EAN", length = 50, nullable = false)
+	public String getEan() {
+		return ean;
+	}
+
+	public void setEan(String ean) {
+		this.ean = ean;
 	}
 
 	@Enumerated(EnumType.STRING)

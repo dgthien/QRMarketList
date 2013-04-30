@@ -4,13 +4,45 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:qrm="http://java.sun.com/jsf/composite/components">
 
 <ui:composition template="/template/standard.xhtml">
 	<ui:define name="content">
-		<h:form id="setupForm">
-	PRODUCTS
-	</h:form>
+		<h:form prependId="false" name="contentForm" id="contentForm" onkeypress="return event.keyCode != 13">
+				<h:panelGroup id="products">
+					<p:panel id="panel">
+						<p:fieldset id="fsProducts" legend="Produtos">
+							<qrm:dataTable  id="dataTable" managedBean="#{productBean}" var="product" rowKey="#{product.id}">
+								<p:column sortBy="#{product.name}" headerText="Nome">
+										<h:outputText value="#{product.name}" />
+								</p:column>
+								<p:column sortBy="#{product.description}" headerText="Descrição">
+										<h:outputText value="#{product.description}" />
+								</p:column>
+								<p:column sortBy="#{product.price}" headerText="Preço">
+										<h:outputText value="#{product.price}" />
+								</p:column>
+								<p:column sortBy="#{product.ean}" headerText="Cód. Barras">
+										<h:outputText value="#{product.ean}" />
+								</p:column>
+								<p:column sortBy="#{product.status}" headerText="Status">
+										<h:outputText value="#{product.status}" />
+								</p:column>
+								<p:column sortBy="#{product.qrCodePrinted}" headerText="QRCode Atualizado">
+										<h:outputText value="#{product.qrCodePrinted}" />
+								</p:column>
+							</qrm:dataTable>
+						</p:fieldset>	
+					</p:panel>
+				</h:panelGroup>
+				<p:commandButton value="Novo" action="#{productBean.create}" ajax="false"/>
+				<p:commandButton value="Editar" action="#{productBean.edit}" />
+				<qrm:confirmDialog widgetVar="inactivate" title="Inativar"
+						   		   action="#{productBean.inactivate}" message="Tem certeza que que inativar esse registro?" update="@form" />
+				<qrm:confirmDialog widgetVar="reactivate" title="Reativar"
+						   		   action="#{productBean.reactivate}"  message="Tem certeza que que reativar esse registro?" update="@form" />
+		</h:form>
 	</ui:define>
 </ui:composition>
 </html>

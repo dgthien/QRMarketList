@@ -5,39 +5,38 @@
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
 	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:qrm="http://java.sun.com/jsf/composite/components"
 	xmlns:t="http://myfaces.apache.org/tomahawk">
 
-<ui:composition template="/template/standard.xhtml">
-	<ui:define name="content">
-		<h:form prependId="false" name="contentForm" id="contentForm" onkeypress="return event.keyCode != 13">
-		<t:saveState value="#{userBean.entity}"/>
-		
-		<p:panel id="userPanel">
-			<p:messages id="msgs" />
-			<h:panelGrid columns="2">
-				<h:outputLabel value="Nome: *" for="name" />
-				<p:inputText id="name" value="#{userBean.entity.name}"
-					required="true" />
-
-				<h:outputLabel value="Usuário: *" for="username" />
-				<p:inputText id="username" value="#{userBean.entity.username}"
-					required="true" />
-
-				<h:outputLabel value="Senha: *" for="password" />
-				<p:password id="password" value="#{userBean.entity.password}"
-					required="true" />
-
-				<h:outputLabel value="Confirmação de Senha *"
-					for="passwordConfirmation" />
-				<p:password id="passwordConfirmation"
-					value="#{userBean.entity.passwordConfirmation}" required="true" />
-			</h:panelGrid>
-		</p:panel>
-		<p:panel>
-			<p:commandButton value="Salvar" action="#{userBean.save}" />
+	<ui:composition template="/template/standard.xhtml">
+	
+		<ui:define name="content">
+			<h:form prependId="false" name="contentForm" id="contentForm" onkeypress="return event.keyCode != 13">
+			<t:saveState value="#{userBean.entity}"/>
+			
+			<p:panel id="userPanel">
+			
+				<p:messages id="msgs" />
+				<p:fieldset id="fsUser" legend="Cadastro de Usuário">
+					<p:focus for="formItemNameUser:name"/>
+					<qrm:formItem id="formItemNameUser" label="Nome" required="true">
+						<p:inputText id="name" value="#{userBean.entity.name}" required="true"/>
+					</qrm:formItem><br></br>
+					<qrm:formItem label="Usuário" required="true">
+						<p:inputText id="username" value="#{userBean.entity.username}" required="true"/>
+					</qrm:formItem><br></br>
+					<qrm:formItem label="Senha" required="true">
+						<p:password id="password" value="#{userBean.entity.password}" required="true"/>
+					</qrm:formItem><br></br>
+					<qrm:formItem label="Confirmação de Senha" required="true">
+						<p:password id="passwordConfirmation" value="#{userBean.entity.passwordConfirmation}" required="true"/>
+					</qrm:formItem><br></br>
+				</p:fieldset>
+			</p:panel>
+			
+			<p:commandButton value="Salvar" action="#{userBean.save}" ajax="false" />
 			<p:commandButton value="Cancelar" action="#{userBean.cancel}" immediate="true" />
-		</p:panel>
-		</h:form>
-	</ui:define>
-</ui:composition>
+			</h:form>
+		</ui:define>
+	</ui:composition>
 </html>

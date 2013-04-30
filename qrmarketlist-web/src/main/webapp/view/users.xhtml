@@ -4,74 +4,38 @@
 	xmlns:f="http://java.sun.com/jsf/core"
 	xmlns:h="http://java.sun.com/jsf/html"
 	xmlns:p="http://primefaces.org/ui"
-	xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:qrm="http://java.sun.com/jsf/composite/components">
 
 <ui:composition template="/template/standard.xhtml">
 	<ui:define name="content">
-		<h:form prependId="false">
-			<p:panel id="panel">
-				<h:panelGroup id="usersPanelGroup">
-					<p:fieldset legend="Usuários">
-						<p:dataTable id="dataTable" var="user"
-							value="#{userBean.listDataModel}"
-							selection="#{userBean.selectedEntity}" selectionMode="single"
-							paginator="true" rows="10"
-							paginatorTemplate="{CurrentPageReport}  {FirstPageLink} {PreviousPageLink} {PageLinks} {NextPageLink} {LastPageLink} {RowsPerPageDropdown}"
-							rowsPerPageTemplate="5,10,15" paginatorPosition="bottom"
-							rowKey="#{user.id}">
-							<p:column>
-								<f:facet name="header">
-									<h:outputText value="Nome" />
-								</f:facet>
-								<h:outputText value="#{user.name}" />
-							</p:column>
-							<p:column>
-								<f:facet name="header">
-									<h:outputText value="Usuário" />
-								</f:facet>
-								<h:outputText value="#{user.username}" />
-							</p:column>
-							<p:column>
-								<f:facet name="header">
-									<h:outputText value="Administrador" />
-								</f:facet>
-								<h:outputText value="#{user.administrator}" />
-							</p:column>
-							<p:column>
-								<f:facet name="header">
-									<h:outputText value="Status" />
-								</f:facet>
-								<h:outputText value="#{user.status}" />
-							</p:column>
-						</p:dataTable>
-					</p:fieldset>
-					<p:panel>
-						<p:commandButton value="Novo" action="#{userBean.create}" />
-						<p:commandButton value="Editar" action="#{userBean.edit}" />
-						<p:commandButton value="Inativar" onclick="inativation.show()" />
-						<p:commandButton value="Reativar" onclick="reactivation.show()" />
+		<h:form prependId="false" name="contentForm" id="contentForm" onkeypress="return event.keyCode != 13">
+				<h:panelGroup id="users">
+					<p:panel id="panel">
+						<p:fieldset id="fsUsers" legend="Usuários">
+							<qrm:dataTable  id="dataTable" managedBean="#{userBean}" var="user" rowKey="#{user.id}">
+								<p:column sortBy="#{user.name}" headerText="Nome">
+										<h:outputText value="#{user.name}" />
+								</p:column>
+								<p:column sortBy="#{user.username}" headerText="Usuário">
+										<h:outputText value="#{user.username}" />
+								</p:column>
+								<p:column sortBy="#{user.administrator}" headerText="Administrador">
+										<h:outputText value="#{user.administrator}" />
+								</p:column>
+								<p:column sortBy="#{user.status}" headerText="Status">
+										<h:outputText value="#{user.status}" />
+								</p:column>
+							</qrm:dataTable>
+						</p:fieldset>	
 					</p:panel>
 				</h:panelGroup>
-			</p:panel>
-			<p:confirmDialog id="inactivateDialog"
-				message="Tem certeza que que inativar esse registro?"
-				header="Inativação" severity="alert" widgetVar="inativation">
-				<p:commandButton id="inactivateConfirm" value="Sim"
-					oncomplete="inativation.hide()"
-					actionListener="#{userBean.inactivate}" ajax="true" />
-				<p:commandButton id="inactivateDecline" value="Não"
-					onclick="inativation.hide()" type="button" />
-			</p:confirmDialog>
-
-			<p:confirmDialog id="reactivateDialog"
-				message="Tem certeza que que reativar esse registro?"
-				header="Reativação" severity="alert" widgetVar="reactivation">
-				<p:commandButton id="reactivateConfirm" value="Sim"
-					oncomplete="reactivation.hide()"
-					actionListener="#{userBean.reactivate}" ajax="true" />
-				<p:commandButton id="reactivateDecline" value="Não"
-					onclick="reactivation.hide()" type="button" />
-			</p:confirmDialog>
+				<p:commandButton value="Novo" action="#{userBean.create}" ajax="false"/>
+				<p:commandButton value="Editar" action="#{userBean.edit}" />
+				<qrm:confirmDialog widgetVar="inactivate" title="Inativar"
+						   		   action="#{userBean.inactivate}" message="Tem certeza que que inativar esse registro?" update="@form" />
+				<qrm:confirmDialog widgetVar="reactivate" title="Reativar"
+						   		   action="#{userBean.reactivate}"  message="Tem certeza que que reativar esse registro?" update="@form" />
 		</h:form>
 	</ui:define>
 </ui:composition>

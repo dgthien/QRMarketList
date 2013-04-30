@@ -1,4 +1,4 @@
-package com.qrmarketlist.resources.user;
+package com.qrmarketlist.resources.product;
 
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -10,8 +10,8 @@ import org.slf4j.LoggerFactory;
 import com.qrmarketlist.core.AbstractPersistence;
 import com.qrmarketlist.core.BusinessException;
 import com.qrmarketlist.core.Util;
-import com.qrmarketlist.core.user.User;
-import com.qrmarketlist.core.user.UserBusiness;
+import com.qrmarketlist.core.product.Product;
+import com.qrmarketlist.core.product.ProductBusiness;
 import com.qrmarketlist.resources.AbstractBean;
 
 /**
@@ -20,24 +20,24 @@ import com.qrmarketlist.resources.AbstractBean;
  */
 @RequestScoped
 @ManagedBean
-public class UserBean extends AbstractBean<User> {
+public class ProductBean extends AbstractBean<Product> {
 
 	private static final long serialVersionUID = 1L;
 
-	@ManagedProperty(value = "#{userBusiness}")
-	private transient UserBusiness userBusiness;
+	@ManagedProperty(value = "#{productBusiness}")
+	private transient ProductBusiness productBusiness;
 
-	public void setUserBusiness(UserBusiness userBusiness) {
-		this.userBusiness = userBusiness;
+	public void setProductBusiness(ProductBusiness productBusiness) {
+		this.productBusiness = productBusiness;
 	}
 
 	public String save() {
 		try {
-			userBusiness.saveOrUpdate(getEntity());
+			productBusiness.saveOrUpdate(getEntity());
 			addMessage(FacesMessage.SEVERITY_INFO, "", "Salvo com sucesso");
 			return goToList();
 		} catch (BusinessException e) {
-			LoggerFactory.getLogger(UserBean.class).error("Error saving User " + getEntity().getName(), e);
+			LoggerFactory.getLogger(ProductBean.class).error("Error saving Product " + getEntity().getName(), e);
 			addMessage(FacesMessage.SEVERITY_ERROR, "", Util.getProperty(e.getMessage()));
 			return goToPage();
 		}
@@ -49,10 +49,10 @@ public class UserBean extends AbstractBean<User> {
 			return goToList();
 		}
 		try {
-			userBusiness.inactive(getSelectedEntity());
+			productBusiness.inactive(getSelectedEntity());
 			addMessage(FacesMessage.SEVERITY_INFO, "", "Inativado com sucesso");
 		} catch (BusinessException e) {
-			LoggerFactory.getLogger(UserBean.class).error("Error inactivating User " + getSelectedEntity().getUsername(), e);
+			LoggerFactory.getLogger(ProductBean.class).error("Error inactivating Product " + getSelectedEntity().getName(), e);
 			addMessage(FacesMessage.SEVERITY_INFO, "", e.getMessage());
 		} finally {
 			setListDataModel(null);
@@ -68,10 +68,10 @@ public class UserBean extends AbstractBean<User> {
 			return goToList();
 		}
 		try {
-			userBusiness.reactivate(getSelectedEntity());
+			productBusiness.reactivate(getSelectedEntity());
 			addMessage(FacesMessage.SEVERITY_INFO, "", "Reativado com sucesso");
 		} catch (BusinessException e) {
-			LoggerFactory.getLogger(UserBean.class).error("Error reactivating User " + getSelectedEntity().getUsername(), e);
+			LoggerFactory.getLogger(ProductBean.class).error("Error reactivating Product " + getSelectedEntity().getName(), e);
 			addMessage(FacesMessage.SEVERITY_INFO, "", e.getMessage());
 		} finally {
 			setListDataModel(null);
@@ -80,17 +80,17 @@ public class UserBean extends AbstractBean<User> {
 	}
 
 	@Override
-	public AbstractPersistence<User> getBusiness() {
-		return userBusiness;
+	public AbstractPersistence<Product> getBusiness() {
+		return productBusiness;
 	}
 
 	@Override
 	public String goToPage() {
-		return "user.xhtml";
+		return "product.xhtml";
 	}
 
 	@Override
 	public String goToList() {
-		return "users.xhtml";
+		return "products.xhtml";
 	}
 }

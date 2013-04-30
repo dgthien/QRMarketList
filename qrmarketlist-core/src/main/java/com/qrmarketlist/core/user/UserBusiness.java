@@ -2,7 +2,6 @@ package com.qrmarketlist.core.user;
 
 import java.util.List;
 
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -13,10 +12,10 @@ import com.qrmarketlist.core.tenant.Tenant;
 
 @Service
 public class UserBusiness extends AbstractPersistence<User> {
-	
+
 	@Autowired
 	private AuthenticationContext authenticationContext;
-	
+
 	/**
 	 * Recupera usuários por nome e senha
 	 * @param username
@@ -30,7 +29,7 @@ public class UserBusiness extends AbstractPersistence<User> {
 		}
 		return user.get(0);
 	}
-	
+
 	/**
 	 * Recupera usuário por email
 	 * @param email
@@ -43,7 +42,7 @@ public class UserBusiness extends AbstractPersistence<User> {
 		}
 		return user.get(0);
 	}
-	
+
 	/**
 	 * Recupera usuário por nome
 	 * @param username
@@ -56,50 +55,46 @@ public class UserBusiness extends AbstractPersistence<User> {
 		}
 		return user.get(0);
 	}
-	
+
 	public User retrieveGlobalAdministrator() {
 		List<User> users = retrieve(eq("administrator", true));
 		if (users == null || users.size() == 0)
 			return null;
 		return users.get(0);
 	}
-	
+
 	/**
 	 * Salva ou atualiza usuário
 	 * @param user
 	 * @param tenant
 	 * @throws BusinessException
 	 */
-	public User saveOrUpdate(User user)  {
-		try {
-			if (user.getId() != null) {
-				if (user.getPassword().equals("")) {
-					String oldPass = retrieveById(user.getId()).getPassword();
-					user.setPassword(oldPass);
-				} else {
-					user.setPassword(user.getPassword());
-				}
-				if (user.getPasswordConfirmation() == null || user.getPasswordConfirmation().equals("")) {
-					String oldPass = retrieveById(user.getId()).getPassword();
-					user.setPasswordConfirmation(oldPass);
-				} else {
-					user.setPasswordConfirmation(user.getPasswordConfirmation());
-				}
-				user = createOrUpdate(user);
+	public User saveOrUpdate(User user)  throws BusinessException {
+		if (user.getId() != null) {
+			if (user.getPassword().equals("")) {
+				String oldPass = retrieveById(user.getId()).getPassword();
+				user.setPassword(oldPass);
 			} else {
-				user.setStatus(UserEnum.ACTIVE);
-				user.setAdministrator(true);
 				user.setPassword(user.getPassword());
-				user.setPasswordConfirmation(user.getPasswordConfirmation());
-				user.setTenant(authenticationContext.getTenant());
-				user = createOrUpdate(user);
 			}
-		} catch (BusinessException e) {
-			LoggerFactory.getLogger(this.getClass()).error(e.getMessage());
+			if (user.getPasswordConfirmation() == null || user.getPasswordConfirmation().equals("")) {
+				String oldPass = retrieveById(user.getId()).getPassword();
+				user.setPasswordConfirmation(oldPass);
+			} else {
+				user.setPasswordConfirmation(user.getPasswordConfirmation());
+			}
+			user = createOrUpdate(user);
+		} else {
+			user.setStatus(UserEnum.ACTIVE);
+			user.setAdministrator(true);
+			user.setPassword(user.getPassword());
+			user.setPasswordConfirmation(user.getPasswordConfirmation());
+			user.setTenant(authenticationContext.getTenant());
+			user = createOrUpdate(user);
 		}
 		return user;
 	}
-	
+
 	/**
 	 * <p>
 	 * Inativa o {@link User}, atualizando o campo {@link User#getStatus()}
@@ -115,7 +110,7 @@ public class UserBusiness extends AbstractPersistence<User> {
 		user.setStatus(UserEnum.INACTIVE);
 		super.createOrUpdate(user);
 	}
-	
+
 	/**
 	 * <p>
 	 * Reativa o {@link User}, atualizando o campo {@link User#getStatus()}
