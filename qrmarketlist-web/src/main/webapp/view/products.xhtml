@@ -42,6 +42,7 @@
 						   		   action="#{productBean.inactivate}" message="Tem certeza que que inativar esse registro?" update="@form" />
 				<qrm:confirmDialog widgetVar="reactivate" title="Reativar"
 						   		   action="#{productBean.reactivate}"  message="Tem certeza que que reativar esse registro?" update="@form" />
+				<p:commandButton value="Imprimir QRCode" action="#{productBean.printQRCode}" ajax="true" update="@form"/>
 		</h:form>
 	</ui:define>
 </ui:composition>

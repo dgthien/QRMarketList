@@ -41,6 +41,7 @@
 		<slf4j-api.version>1.6.4</slf4j-api.version>
 		<slf4j-simple.version>1.6.6</slf4j-simple.version>
 		<cglib.version>2.2.2</cglib.version>
+		<zxing.version>2.1</zxing.version>
 	</properties>
 
 	<build>

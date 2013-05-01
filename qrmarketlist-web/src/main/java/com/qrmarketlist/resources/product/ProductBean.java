@@ -9,6 +9,7 @@ import org.slf4j.LoggerFactory;
 
 import com.qrmarketlist.core.AbstractPersistence;
 import com.qrmarketlist.core.BusinessException;
+import com.qrmarketlist.core.QRCodeUtil;
 import com.qrmarketlist.core.Util;
 import com.qrmarketlist.core.product.Product;
 import com.qrmarketlist.core.product.ProductBusiness;
@@ -21,7 +22,6 @@ import com.qrmarketlist.resources.AbstractBean;
 @RequestScoped
 @ManagedBean
 public class ProductBean extends AbstractBean<Product> {
-
 	private static final long serialVersionUID = 1L;
 
 	@ManagedProperty(value = "#{productBusiness}")
@@ -72,6 +72,24 @@ public class ProductBean extends AbstractBean<Product> {
 			addMessage(FacesMessage.SEVERITY_INFO, "", "Reativado com sucesso");
 		} catch (BusinessException e) {
 			LoggerFactory.getLogger(ProductBean.class).error("Error reactivating Product " + getSelectedEntity().getName(), e);
+			addMessage(FacesMessage.SEVERITY_INFO, "", e.getMessage());
+		} finally {
+			setListDataModel(null);
+		}
+		return goToList();
+	}
+
+	public String printQRCode() {
+		if (getSelectedEntity() == null) {
+			addMessage(FacesMessage.SEVERITY_INFO, "", "Selecione um produto para imprimir");
+			return goToList();
+		}
+		try {
+			String filePath = QRCodeUtil.printQRCode(getSelectedEntity(), "");
+			productBusiness.printQRCode(getSelectedEntity());
+			addMessage(FacesMessage.SEVERITY_INFO, "", "Arquivo "+filePath + " criado com sucesso");
+		} catch (BusinessException e) {
+			LoggerFactory.getLogger(ProductBean.class).error("Error creating QRCode Product " + getSelectedEntity().getName(), e);
 			addMessage(FacesMessage.SEVERITY_INFO, "", e.getMessage());
 		} finally {
 			setListDataModel(null);

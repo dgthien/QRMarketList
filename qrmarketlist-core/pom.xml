@@ -75,6 +75,21 @@
 			<artifactId>slf4j-simple</artifactId>
 			<version>${slf4j-simple.version}</version>
 		</dependency>
+		<dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>core</artifactId>
+			<version>${zxing.version}</version>
+		</dependency>
+        <dependency>
+			<groupId>com.google.zxing</groupId>
+			<artifactId>javase</artifactId>
+			<version>${zxing.version}</version>
+		</dependency>
+	    <dependency>
+	        <groupId>net.glxn</groupId>
+	        <artifactId>qrgen</artifactId>
+	        <version>1.2</version>
+	    </dependency>
 	</dependencies>
 
 	<build>

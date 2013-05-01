@@ -120,15 +120,28 @@ public class ProductBusiness extends AbstractPersistence<Product> {
 
 	/**
 	 * <p>
-	 * Reativa o {@link User}, atualizando o campo {@link User#getStatus()}
-	 * para o valor {@link UserEnum#ACTIVE}. 
+	 * Reativa o {@link Product}, atualizando o campo {@link Product#getStatus()}
+	 * para o valor {@link ProductEnum#ACTIVE}. 
 	 * </p>
-	 * @param user
+	 * @param product
 	 * @throws BusinessException
 	 */
 	public void reactivate(Product product) throws BusinessException {
 		product.setStatus(ProductEnum.ACTIVE);
 		product.setQrCodePrinted(false);
+		super.createOrUpdate(product);
+	}
+	
+	/**
+	 * <p>
+	 * Altera o {@link Product}, atualizando o campo {@link Product#getQRCodePrinted()}
+	 * para o valor {@link ProductEnum#ACTIVE}. 
+	 * </p>
+	 * @param product
+	 * @throws BusinessException
+	 */
+	public void printQRCode(Product product) throws BusinessException {
+		product.setQrCodePrinted(true);
 		super.createOrUpdate(product);
 	}
 
