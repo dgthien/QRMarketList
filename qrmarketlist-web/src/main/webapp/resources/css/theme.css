@@ -1,3 +1,7 @@
+.ui-widget {
+	font-size: 12px !important;	
+}
+  
   html, body, div, h1, h2, h3, h4, h5, h6, p, img, dl,
   dt, dd, ol, ul, li, table, tr, td, form, object, embed,
   article, aside, canvas, command, details, fieldset,
@@ -46,7 +50,7 @@
   margin: 0 0 1em;
   }
   li {
-  margin: 0 0 .5em;
+  /*margin: 0 0 .5em;*/
   }
   table {
   border-collapse: collapse;
@@ -69,6 +73,7 @@
   }
   .content {
   padding: 0 44px;
+  margin-top: -10px;
   }
   .topbar {
   text-align: right;
@@ -76,7 +81,7 @@
   padding-bottom: .5em;
   }
   .google-header-bar {
-  height: 71px;
+  /*height: 71px;*/
   background: #f1f1f1;
   border-bottom: 1px solid #e5e5e5;
   overflow: hidden;
@@ -85,7 +90,7 @@
   margin: 17px 0 0;
   float: left;
   font-family: 'Londrina Shadow', cursive;
-  font-size: 40px;
+  font-size: 36px;
   }
   .header .signin,
   .header .signup {
@@ -95,7 +100,7 @@
   }
   .header .signin-button,
   .header .signup-button {
-  margin: 22px 0 0;
+  margin: 19px 0 0;
   float: right;
   }
   .header .signin-button a {
@@ -1431,9 +1436,9 @@
 	
 	#menu a {
 		float: left;
-		padding: 12px 30px;
+		padding: 6px 30px;
 		color: #999;
-		text-transform: uppercase;
+		/*text-transform: uppercase;*/
 		font: bold 12px Arial, Helvetica;
 		text-decoration: none;
 		text-shadow: 0 1px 0 #000;
@@ -1453,7 +1458,7 @@
 		opacity: 0;
 		visibility: hidden;
 		position: absolute;
-		top: 38px;
+		top: 35px;
 		left: 0;
 		z-index: 1;    
 		background: #444;
@@ -1509,7 +1514,7 @@
 	}
 	
 	#menu ul a {    
-		padding: 10px;
+		padding: 6px;
 		width: 130px;
 		_height: 10px; /*IE6 only*/
 		display: block;
