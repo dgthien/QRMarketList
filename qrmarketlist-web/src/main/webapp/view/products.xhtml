@@ -30,7 +30,8 @@
 										<h:outputText value="#{product.status}" />
 								</p:column>
 								<p:column sortBy="#{product.qrCodePrinted}" headerText="QRCode Atualizado">
-										<h:outputText value="#{product.qrCodePrinted}" />
+									<p:graphicImage id="imgActive"
+										value="/resources/images/#{product.qrCodePrinted == true ? 'ok.gif' : 'cancel.png'}" />
 								</p:column>
 							</qrm:dataTable>
 						</p:fieldset>	
